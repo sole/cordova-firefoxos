@@ -46,16 +46,15 @@ exports.createProject = function(project_path,package_name,project_name){
         process.exit(2);
     }
     
-    console.log('Creating Firefox OS project');
     console.log('Project Path '+ path.relative(process.cwd(),project_path));
     console.log('Package Name '+ package_name);
     console.log('Project Name '+ project_name);
 
     //copy template folder
-    shjs.cp('-r', path.join(ROOT, 'bin', 'templates', 'project', 'www'), project_path);
-    
+    shjs.cp('-r', path.join(ROOT, 'bin', 'templates', 'project', 'platform_www'), project_path);
+
     //copy cordova js file
-    shjs.cp('-r', path.join(ROOT, 'cordova-lib', 'cordova.js'), path.join(project_path,'www'));  
+    shjs.cp('-r', path.join(ROOT, 'cordova-lib', 'cordova.js'), path.join(project_path,'platform_www'));
 
     //copy cordova folder
     shjs.cp('-r', path.join(ROOT, 'bin', 'templates', 'project', 'cordova'), project_path); 
