@@ -20,14 +20,38 @@
 */
 
 var deploy = require('fxos-deploy/command');
+var fs = require('fs');
+var archiver = require('archiver');
 
 module.exports.run = function() {
 
-	deploy({
-		manifestURL: 'platforms/firefoxos/www/manifest.webapp'
-	}, function(err, result, next) {
-		console.log(err);
-		next(err);
+	var output = fs.createWriteStream('platforms/firefoxos/package.zip');
+	var zipArchive = archiver('zip');
+
+	output.on('close', function() {
+
+		deploy({
+			zip: 'platforms/firefoxos/package.zip',
+			manifestURL: 'platforms/firefoxos/www/manifest.webapp'
+		}, function(err, result, next) {
+			console.log(err);
+			next(err);
+		});
+
+	});
+
+	zipArchive.pipe(output);
+
+	zipArchive.bulk([
+		{ cwd: 'platforms/firefoxos/www', src: ['**/*'], expand: true }
+	]);
+
+	zipArchive.finalize(function(err, bytes) {
+		if(err) {
+			throw err;
+		}
+
+		console.log('done zipping', bytes);
 	});
 
 };
