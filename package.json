@@ -13,14 +13,24 @@
     "apache"
   ],
   "dependencies": {
-    "shelljs": "^0.1.4",
-    "adm-zip": "0.4.4"
+    "adm-zip": "0.4.4",
+    "fxos-deploy": "^0.3.2",
+    "shelljs": "^0.1.4"
   },
   "author": "Apache Software Foundation",
   "contributors": [
-      {"name": "James Long","email": "jlong@mozilla.com"},
-      {"name": "Herm Wong", "email": "hermanw@adobe.com"},
-      {"name": "Steve Gill", "email": "steveng@adobe.com"},
+    {
+      "name": "James Long",
+      "email": "jlong@mozilla.com"
+    },
+    {
+      "name": "Herm Wong",
+      "email": "hermanw@adobe.com"
+    },
+    {
+      "name": "Steve Gill",
+      "email": "steveng@adobe.com"
+    }
   ],
   "license": "Apache Version 2.0"
 }

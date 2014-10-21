@@ -19,16 +19,20 @@
 * under the License.
 */
 
-var run = require('./lib/run');
-var args = process.argv;
+var deploy = require('fxos-deploy/command');
 
-// provide help
-if ( args[2] == '--help' || args[2] == '/?' || args[2] == '-h' || args[2] == '/h' ||
-	args[2] == 'help' || args[2] == '-help' || args[2] == '/help') {
-	//console.log('Usage: cordova build firefoxos');
-	//console.log('Build will create the packaged app in \''+platformBuildDir+'\'.');
-	run.help();
-	process.exit(0);
-} else {
-	run.run(args);
-}
+module.exports.run = function() {
+
+	deploy({
+		manifestURL: 'platforms/firefoxos/www/manifest.webapp'
+	}, function(err, result, next) {
+		console.log(err);
+		next(err);
+	});
+
+};
+
+module.exports.help = function() {
+	console.log('show the help');
+};
+
